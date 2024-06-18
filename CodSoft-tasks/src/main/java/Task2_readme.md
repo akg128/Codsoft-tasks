@@ -1,4 +1,4 @@
-##  Student Grade Calculator Working
+##  Student Grade Calculator
 
 **Main Method:**
 
