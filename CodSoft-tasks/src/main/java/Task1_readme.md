@@ -1,43 +1,86 @@
-## Number Guessing Game 
+Number Game
+==========
 
-This Java program is a simple number guessing game. The user is asked to guess a random number between 1 and 10. The game continues until the user correctly guesses the number or reaches the maximum number of guesses (3).
+### Overview
 
-### Code Overview
----------------
-
-* The program's execution begins in the `main` method.
-* It initializes several variables:
-	+ `userChoice`: an integer to store the user's menu selection
-	+ `min` and `max`: integers to define the range of the random number (1-10)
-	+ `guessCount`: an integer to keep track of the number of guesses
-	+ `random`: a `Random` object to generate a random number
-	+ `randomNum`: an integer to store the randomly generated number
-	+ `scanner`: a `Scanner` object to read user input
-	+ `userGuess`: an integer to store the user's guess
+This Java program is a simple number guessing game where the user has to guess a randomly generated number between 1 and 10.
 
 ### Game Menu
-------------
+-------------
 
-A `do-while` loop is used to handle the main game menu.
+The game starts with a menu that allows the user to select an option:
 
-* It displays a menu with options to "Start Game" or "Exit".
-* It reads the user's choice and executes the corresponding logic.
+```java
+System.out.println("""
+                   Welcome to the Number Guessing Game!
+                   Please select an option:
+                   1. Start Game
+                   2. Exit""");
+```
+
+The user's selection is stored in the `userChoice` variable.
 
 ### Game Logic
 -------------
 
-A `while` loop is used to run the game as long as the user has chosen "Start Game" and the player hasn't guessed correctly.
+If the user selects option 1, the game logic is executed:
 
-* Inside the loop:
-	+ It prompts the user for a guess.
-	+ It adds the entered guess to the `userGuess` variable.
-	+ It checks if the guess is correct, too low, or too high and provides feedback.
-	+ It increments the `guessCount` variable to keep track of the number of attempts.
-	+ If the user reaches the maximum number of guesses without guessing correctly, the game ends and the correct answer is revealed.
+```java
+while (userChoice == 1 && userGuess!= randomNum) {
+    System.out.print("Enter your guess(1-10): ");
+    userGuess = scanner.nextInt();
+    System.out.println("Your guess is: " + userGuess);
+
+    guessCount++;
+
+    if (userGuess == randomNum) {
+        System.out.println("Congratulations! Your guess is correct.");
+    } else if (userGuess < randomNum) {
+        System.out.println("Oops! Your guess is too low.");
+    } else {
+        System.out.println("Oops! Your guess is too high.");
+    }
+
+    if (guessCount == 3 && userGuess!= randomNum) {
+        System.out.println(
+                "You have reached the maximum number of guesses. The correct number was " + randomNum
+                        + ".");
+        break;
+    }
+}
+```
+
+In this code:
+
+* The user is prompted to enter a guess between 1 and 10.
+* The user's guess is stored in the `userGuess` variable.
+* The `guessCount` variable is incremented to keep track of the number of guesses.
+* If the user's guess is correct, a congratulatory message is displayed.
+* If the user's guess is too low or too high, a hint is displayed.
+* If the user reaches the maximum number of guesses (3) without guessing correctly, the correct answer is revealed and the game ends.
 
 ### Replay Option
 ----------------
 
-After each game, the user is asked if they want to play again.
+After the game ends, the user is prompted to play again:
 
-* If they choose "Yes," the game loop restarts with a new random number.
+```java
+System.out.println("Game Over! Do you want to play again? 1. Yes 2. No");
+```
+
+If the user selects option 1, the game restarts. If the user selects option 2, the game exits.
+
+### Variables and Objects
+-------------------------
+
+* `userChoice`: stores the user's selection from the menu.
+* `min` and `max`: define the range of possible numbers (1-10).
+* `guessCount`: keeps track of the number of guesses.
+* `random`: a `Random` object used to generate a random number.
+* `randomNum`: the randomly generated number to be guessed.
+* `scanner`: a `Scanner` object used to read user input.
+
+### Requirements
+--------------
+
+* Java 8 or later
